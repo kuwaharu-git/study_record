@@ -58,7 +58,7 @@ def input_any(prompt):
             break
     return str.strip()
 
-# classはnot nullではないため何もない場合はNoneを返す
+# not nullではないため何もない場合はNoneを返す
 def input_any_null(prompt):
     while True:
         str = input(prompt)
