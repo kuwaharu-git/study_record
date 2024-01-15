@@ -33,7 +33,7 @@ DROP TABLE if EXISTS studying_users;
 CREATE TABLE studying_users(
     user_id        INT    NOT NULL      COMMENT 'ユーザーID',
     category_id    INT    NOT NULL      COMMENT 'カテゴリーID',
-    start_time     DATE   NOT NULL      COMMENT '勉強開始時間',
+    start_time     DATETIME   NOT NULL      COMMENT '勉強開始時間',
     PRIMARY KEY(user_id)
 )COMMENT = '勉強中の学生テーブル';
 
