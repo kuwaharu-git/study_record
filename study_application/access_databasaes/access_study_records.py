@@ -55,6 +55,6 @@ def create_study_record(cnx, cursor, user_id):
         print(f"[Error]: {user_id}は登録されていません。一度ログアウトしてログインしなおしてください")
 
 
- 
+
 if __name__ == '__main__':
     create_study_record(2)
