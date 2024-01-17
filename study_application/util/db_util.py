@@ -17,8 +17,8 @@ class database_connect:
             # コネクションが切れた時に再接続する
             cnx.ping(reconnect=True)
             try:
-                self.func(cnx, cursor, *args, **kwargs)
-                return True
+                result = self.func(cnx, cursor, *args, **kwargs)
+                return result
             except Exception as e:
                 print("データベースの操作でエラーが起きました。")
                 print(e)
