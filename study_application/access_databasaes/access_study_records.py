@@ -3,15 +3,26 @@ import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from util.db_util import database_connect
 from util import input_util
-from access_databasaes.access_users import check_user_by_id
-from access_databasaes import access_studying_users
-from access_databasaes import access_categories
+from access_databasaes import access_studying_users, access_users, access_categories
 import datetime
+
+# 勉強記録の件数を取得
+def get_records_count(cursor, user_id):
+    sql = 'select count(*) as count from study_records where user_id = %s'
+    data = [user_id]
+    cursor.execute(sql, data)
+    rows = cursor.fetchall()
+    if len(rows) != 0:
+        count = rows[0]['count']
+        return count
+    else:
+        return 0
+
 
 # 勉強記録の追加の際に使う関数
 @database_connect
 def create_study_record(cnx, cursor, user_id):
-    user_info = check_user_by_id(cursor, user_id)   # ログイン中に他のユーザーによって削除される可能性を考慮
+    user_info = access_users.check_user_by_id(cursor, user_id)   # ログイン中に他のユーザーによって削除される可能性を考慮
     if user_info:
         study_info = access_studying_users.get_studying_user_info(cursor, user_id)
         if study_info:
@@ -55,6 +66,11 @@ def create_study_record(cnx, cursor, user_id):
         print(f"[Error]: {user_id}は登録されていません。一度ログアウトしてログインしなおしてください")
 
 
-
+# 勉強記録の削除(user削除)
+def delete_records_user(cnx, cursor, user_id):
+    sql = 'delete from study_records where user_id = %s'
+    data = [user_id]
+    cursor.execute(sql, data)
+    cnx.commit()
 if __name__ == '__main__':
     create_study_record(2)
