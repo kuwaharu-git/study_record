@@ -3,7 +3,7 @@ import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from util.db_util import database_connect
 from util import input_util
-from access_databasaes import access_users
+from access_databasaes import access_users, access_studying_users
 
 # user_idからカテゴリーが存在するか確認する関数
 def check_category(cursor, user_id, category_name):
@@ -66,16 +66,24 @@ def delete_category(cunx, cursor, user_id):
             print(f"{row['id']}: {row['category_name']}")
         category_id = input_util.input_int("削除するカテゴリーのIDを入力して下さい")
         category_info = get_category(cursor, category_id)
+        studying_user_info =  access_studying_users.check_studying_user(cursor, user_id)
+        if studying_user_info:
+            studying_cateogy_id = studying_user_info[0]['category_id']
+        else:
+            studying_cateogy_id = False
         if category_info:                                     
-            if user_id == category_info[0]['user_id']:       
-                if input_util.input_boolean(f"カテゴリー{category_info[0]['category_name']}を削除していいですか？"):
-                    sql = 'delete from categories where id = %s'
-                    data = [category_id]
-                    cursor.execute(sql, data)
-                    cunx.commit()
-                    print("カテゴリーの削除が完了しました")
+            if user_id == category_info[0]['user_id']:      
+                if category_id != studying_cateogy_id:
+                    if input_util.input_boolean(f"カテゴリー{category_info[0]['category_name']}を削除していいですか？"):
+                        sql = 'delete from categories where id = %s'
+                        data = [category_id]
+                        cursor.execute(sql, data)
+                        cunx.commit()
+                        print("カテゴリーの削除が完了しました")
+                    else:
+                        print("キャンセルしました")
                 else:
-                    print("キャンセルしました")
+                    print("現在学習中のカテゴリなため削除できません")
             else:
                 print(f"[Error]: カテゴリーのユーザーIDとあなたのIDが一致しないため削除できません")
         else:
