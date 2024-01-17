@@ -28,7 +28,7 @@ def select_menu(user_id):
         elif num == 3:
             pass
         elif num == 4:
-            pass
+            access_users.update_user_affiliaton(user_id)
         elif num == 5:
             print("ログアウトしました")
             break

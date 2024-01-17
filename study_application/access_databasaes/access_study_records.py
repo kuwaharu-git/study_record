@@ -26,7 +26,6 @@ def create_study_record(cnx, cursor, user_id):
     if user_info:
         study_info = access_studying_users.get_studying_user_info(cursor, user_id)
         if study_info:
-            print(study_info)
             category_id = study_info[0]['category_id']
             category_name = access_categories.get_category(cursor, category_id)
             if category_name:

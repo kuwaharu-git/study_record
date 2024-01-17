@@ -81,8 +81,9 @@ def delete_user(cnx, cursor):
 def update_user_affiliaton(cnx, cursor, user_id):
     user_info = check_user_by_id(cursor, user_id)
     if user_info:
+        print(f"現在の所属: {user_info[0]['affiliaton']}")
         affiliaton = input_util.input_any_null(f"所属を入力してください。所属を無しにする場合は何も入力せずにEnterを押してください:")
-        sql = 'update users set affiliaton = %s where user_name = %s'
+        sql = 'update users set affiliaton = %s where id = %s'
         data = [affiliaton, user_id]
         cursor.execute(sql, data)
         cnx.commit()
@@ -90,7 +91,7 @@ def update_user_affiliaton(cnx, cursor, user_id):
     else:
         print(f"[Error]: {user_id}は登録されていません")
 
-        
+# 所属の変更
 
 if __name__ == "__main__":
     create_user()
