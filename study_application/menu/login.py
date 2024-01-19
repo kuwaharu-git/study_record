@@ -3,7 +3,7 @@ import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from access_databasaes import access_categories, access_study_records, access_studying_users, access_users
 from util import input_util
-from menu import category_manegement
+from menu import category_manegement, output_menu
 
 def select_menu(user_id):
     while True:
@@ -26,7 +26,7 @@ def select_menu(user_id):
         elif num == 2:
             category_manegement.category_select_menu(user_id)
         elif num == 3:
-            pass
+            output_menu.output_select(user_id)
         elif num == 4:
             access_users.update_user_affiliaton(user_id)
         elif num == 5:
