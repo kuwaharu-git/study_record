@@ -46,8 +46,7 @@ ALTER TABLE categories ADD constraint categories_FK1
 -- 勉強記録テーブルの外部キー
 ALTER TABLE study_records ADD constraint study_records_FK1
     Foreign Key (user_id) REFERENCES users(id);
-ALTER TABLE study_records ADD constraint study_records_FK2
-    Foreign Key (category_id) REFERENCES categories(id);
+
 
 -- 勉強中の学生テーブルの外部キー
 ALTER TABLE studying_users ADD constraint studying_users_FK1
