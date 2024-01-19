@@ -37,6 +37,18 @@ def get_categories(cursor, user_id):
         return rows
     else:
         return False
+    
+@database_connect
+def get_categories_db(cnx, cursor, user_id):
+    sql = 'select * from categories where user_id = %s'
+    data = [user_id]
+    cursor.execute(sql, data)
+    rows = cursor.fetchall()
+    if len(rows) != 0:
+        return rows
+    else:
+        return False
+
 
 # カテゴリの追加
 @database_connect
@@ -64,6 +76,7 @@ def delete_category(cunx, cursor, user_id):
     if rows:
         for row in rows:
             print(f"{row['id']}: {row['category_name']}")
+        print("※削除したカテゴリーですでに記録をしている場合、その記録のカテゴリーは不明になります")
         category_id = input_util.input_int("削除するカテゴリーのIDを入力して下さい")
         category_info = get_category(cursor, category_id)
         studying_user_info =  access_studying_users.check_studying_user(cursor, user_id)
