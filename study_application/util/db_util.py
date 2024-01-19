@@ -1,6 +1,6 @@
 import mysql.connector
 # 関数実行前にデータベースに接続、実行後にcloseするでデコレーター
-# エラーが起きた場合はFalse、正常に動作した場合はTrueを返す
+# エラーが起きた場合はFalseを返す
 class database_connect:
     def __init__(self, func):
         self.func = func

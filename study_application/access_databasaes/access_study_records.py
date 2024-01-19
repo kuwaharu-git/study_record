@@ -1,6 +1,7 @@
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+print(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from util.db_util import database_connect
 from util import input_util
 from access_databasaes import access_studying_users, access_users, access_categories

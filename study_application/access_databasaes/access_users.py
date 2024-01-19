@@ -6,7 +6,8 @@ from util import input_util
 from access_databasaes import access_study_records, access_categories, access_studying_users
 
 # ユーザーがusersに存在するかの確認(idから)
-def check_user_by_id(cursor, id):
+@database_connect
+def check_user_by_id(cnx, cursor, id):
     sql = 'select * from users where id = %s'
     data = [id]
     cursor.execute(sql, data)
@@ -14,7 +15,7 @@ def check_user_by_id(cursor, id):
     if len(rows) != 0:
         return rows   # ユーザーが存在したらrowsを返す
     else:
-        return False  # ユーザーが存在しなかったらFalseを返す
+        return None  # ユーザーが存在しなかったらFalseを返す
     
 # ユーザーがusersに存在するかの確認(user_nameから)
 def check_user_by_user_name(cursor, name):

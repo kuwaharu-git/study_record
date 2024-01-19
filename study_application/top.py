@@ -1,8 +1,6 @@
-import os
-import sys
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from access_databasaes import access_categories, access_study_records, access_studying_users, access_users
 from util import input_util
+import show_studying_users
 from menu import login, user_management
 
 print("=== 勉強記録アプリ ===")
