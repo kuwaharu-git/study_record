@@ -40,12 +40,12 @@ def input_year_month(prompt):
     while True:
         str = input(prompt)
         try:
-            datetime.datetime.strptime(str, '%Y-%m')
+            year_month = datetime.datetime.strptime(str, '%Y-%m')
         except ValueError:
             print("エラー!!日付で入力してください")
             continue
         break
-    return str
+    return year_month
 
 # キーボドの入力内容が何もないかの確認
 def input_any(prompt):
