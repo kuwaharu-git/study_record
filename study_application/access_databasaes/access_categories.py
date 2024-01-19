@@ -27,12 +27,12 @@ def get_category(cnx, cursor, category_id):
     if len(rows) != 0:
         return rows
     else:
-        return False
+        return None
 
 # user_idからすべてのカテゴリーを取得
 @database_connect
 def get_categories(cnx, cursor, user_id):
-    sql = 'select * from categories where user_id = %s'
+    sql = 'select * from categories where user_id = %s order by id'
     data = [user_id]
     cursor.execute(sql, data)
     rows = cursor.fetchall()

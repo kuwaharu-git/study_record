@@ -1,8 +1,8 @@
 from access_databasaes import access_categories, access_study_records, access_studying_users, access_users
 from util import input_util
 import show_studying_users
-from menu import login, user_management
-
+from login_user import login
+from user_manegement import user_management_menu
 print("=== 勉強記録アプリ ===")
 print()
 while True:
@@ -23,7 +23,7 @@ while True:
             print(f"{user_name}は登録されていません")
             continue
     elif num == 2:
-        user_management.select_menu()
+        user_management_menu.select_menu()
     elif num == 3:
         access_studying_users.get_all_info()
     elif num == 4:

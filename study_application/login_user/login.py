@@ -3,8 +3,8 @@ import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from access_databasaes import access_categories, access_study_records, access_studying_users, access_users
 from util import input_util
-from menu import category_manegement, output_menu
-
+from login_user.category_manegement import category_manegement_menu
+from login_user.output import output_menu
 def select_menu(user_id):
     while True:
         print("*** ユーザーメニュー")
@@ -24,7 +24,7 @@ def select_menu(user_id):
         elif num == 1 and type == 2:
             access_studying_users.insert_studying_user(user_id)
         elif num == 2:
-            category_manegement.category_select_menu(user_id)
+            category_manegement_menu.category_select_menu(user_id)
         elif num == 3:
             output_menu.output_select(user_id)
         elif num == 4:
