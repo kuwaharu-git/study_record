@@ -73,3 +73,25 @@ def delete_records_user(cnx, cursor, user_id):
     cnx.commit()
 if __name__ == '__main__':
     create_study_record(2)
+
+
+# 勉強記録の取得(output用)
+def get_records(cursor, user_id, first_date, last_date):
+    sql = 'select * from study_records where user_id = %s and study_date between %s and %s'
+    data = [user_id, first_date, last_date]
+    cursor.execute(sql, data)
+    records_rows = cursor.fetchall()
+    if len(records_rows) != 0:
+        return records_rows
+    else:
+        return False
+    
+def get_category_id_list(cursor, user_id, first_date, last_date):
+    sql = 'select distinct(category_id) as category_id from study_records where user_id = %s and study_date between %s and %s'
+    data = [user_id, first_date, last_date]
+    cursor.execute(sql, data)
+    category_id = cursor.fetchall()
+    return category_id
+
+sql = 'insert into study_records (user_id, category_id, study_date, study_time) values (%s, %s, %s, %s)'
+6, 7, 5, 4, 2, 1 
