@@ -8,6 +8,11 @@ from menu import login, user_management
 def category_select_menu(user_id):
     while True:
         print("*** カテゴリ管理 ***")
+        print("--- カテゴリ一覧 ---")
+        rows = access_categories.get_categories_db(user_id)
+        for row in rows:
+                print(f"{row['id']:<3}:{row['category_name']}")
+        print("--- メニュー ---")
         print("1: カテゴリの追加")
         print("2: カテゴリの削除")
         print("3: 終了(ユーザーメニューに戻る)")
