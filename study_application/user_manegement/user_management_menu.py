@@ -1,9 +1,11 @@
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from access_databasaes import access_categories, access_study_records, access_studying_users, access_users
 from util import input_util
+from user_manegement import create_user, delete_user
+from util.db_util import check_error
 
+@check_error
 def select_menu():
     while True:
         print("*** ユーザー管理 *** ")
@@ -11,10 +13,13 @@ def select_menu():
         print("2: ユーザー削除")
         num = input_util.input_int("メニューを選択してください:")
         if num == 1:
-            access_users.create_user()
+            create_user.main()
             break
         elif num == 2:
-            access_users.delete_user()
+            delete_user.main()
             break
         else:
             print("1~2の数字を入力してください")
+
+if __name__ == '__main__':
+    select_menu()
