@@ -22,16 +22,20 @@ class database_connect:
             cursor = cnx.cursor(dictionary=True)
             # コネクションが切れた時に再接続する
             cnx.ping(reconnect=True)
-            try:
-                result = self.func(cnx, cursor, *args, **kwargs)
-                return result
-            except:
-                raise Database_operation_Error("データベースの操作中にエラーが発生")
-            finally:
-                cursor.close()
-                cnx.close()
         except:
             raise Database_connect_Error("データベースとの接続に失敗")
+        try:
+            result = self.func(cnx, cursor, *args, **kwargs)
+            return result
+        except Exception as e:
+            print(e)
+            raise Database_operation_Error("データベースの操作中にエラーが発生")
+        finally:
+            if cursor:
+                cursor.close()
+            if cnx:
+                cnx.close()
+    
         
 class check_error:
     def __init__(self, func):
