@@ -10,7 +10,7 @@ from login_user import update_affiliaton
 from util.db_util import check_error
 @check_error
 def select_menu():
-    user_name = input_util.input_any("ユーザー名を入力してください: ")
+    user_name = input_util.input_any("ユーザー名を入力してください:")
     user_info = access_users.check_user_by_user_name(user_name)
     if not user_info == None:
         user_id = user_info[0]["id"]
