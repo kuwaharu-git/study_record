@@ -20,11 +20,11 @@ CREATE TABLE categories (
 -- 勉強記録テーブル
 DROP TABLE if EXISTS study_records;
 CREATE TABLE study_records(
-    id           INT      NOT NULL  AUTO_INCREMENT   COMMENT 'ID',
-    user_id      INT      NOT NULL                   COMMENT 'ユーザーID',
-    category_id  INT      NOT NULL  DEFAULT 0        COMMENT 'カテゴリーID',
-    study_date   DATE     NOT NULL                   COMMENT '勉強日付',
-    study_time   TIME     NOT NULL                   COMMENT '勉強時間',
+    id              INT           NOT NULL  AUTO_INCREMENT   COMMENT 'ID',
+    user_id         INT           NOT NULL                   COMMENT 'ユーザーID',
+    category_name   VARCHAR(32)   NOT NULL                   COMMENT 'カテゴリー名',
+    study_date      DATE          NOT NULL                   COMMENT '勉強日付',
+    study_time      TIME          NOT NULL                   COMMENT '勉強時間',
     PRIMARY KEY(id)
 )COMMENT = '勉強記録テーブル';
 
