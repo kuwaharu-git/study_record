@@ -34,6 +34,8 @@ def main(user_id):
     for i in range(1, len(category_name_list)):
         plt.bar(x_date, bar_records[category_name_list[i]['category_name']], bottom=bar_records[category_name_list[i - 1]['category_name']], label = category_name_list[i]['category_name'])
     plt.xticks([i for i in range(0, last_date + 2, 2)])
+    plt.xlabel("日")
+    plt.ylabel("分")
     plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left', borderaxespad=0, fontsize=18)
     plt.savefig(f"{os.path.dirname(__file__)}/{user_id}_stacked_bar_graph.png", bbox_inches='tight')
     plt.clf()
