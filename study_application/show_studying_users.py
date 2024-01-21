@@ -1,7 +1,9 @@
 from access_databasaes import access_studying_users, access_users, access_categories
+from util.db_util import check_error
 
+@check_error
 def main():
-    rows = access_studying_users.get_all_info
+    rows = access_studying_users.get_all_info()
     if rows:
         for row in rows:
             user_name = access_users.check_user_by_id(row['user_id'])[0]['user_name']
