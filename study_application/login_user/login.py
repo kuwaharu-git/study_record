@@ -16,6 +16,7 @@ def select_menu():
         user_id = user_info[0]["id"]
     else:
         print(f"{user_name}は登録されていません")
+        return 
     while True:
         print("*** ユーザーメニュー")
         if access_studying_users.check_studying_user(user_id):
