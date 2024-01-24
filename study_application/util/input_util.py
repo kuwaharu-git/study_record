@@ -5,6 +5,8 @@ import datetime
 def input_int(prompt):
     while True:
         str = input(prompt)   # キーボードからIDを入力
+        if str == 'cancel':
+            return 'cancel'
         if not str.isdigit():                      # 入力された値が整数かどうか判定
             print("エラー！！整数で入力してください")
             continue

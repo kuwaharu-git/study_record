@@ -19,6 +19,9 @@ def main(user_id):
     for row in rows:
             print(f"{row['id']}: {row['category_name']}")
     category_id = input_util.input_int("削除するカテゴリーのIDを入力して下さい:")
+    if category_id == 'cancel':
+        print("キャンセルしました")
+        return
     category_info = access_categories.get_category(category_id)
     if category_info == None:
          print(f"[Erroe]: ID: {category_id}のカテゴリーは存在しません")

@@ -13,5 +13,8 @@ def main(user_id):
         return 
     print(f"現在の所属: {user_info[0]['affiliaton']}")
     affiliaton = input_util.input_any_null(f"所属を入力してください。所属を無しにする場合は何も入力せずにEnterを押してください:")
+    if affiliaton == 'cancel':
+        print("キャンセルしました")
+        return
     access_users.update_user_affiliaton(user_id, affiliaton)
     print("ユーザーの所属の更新が完了しました")

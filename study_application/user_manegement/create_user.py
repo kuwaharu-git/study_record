@@ -6,6 +6,9 @@ from util import input_util
 
 def main():
     user_name = input_util.input_any("登録するユーザー名を入力してください:")
+    if user_name == 'cancel':
+        print("キャンセルしました")
+        return
     user_info = access_users.check_user_by_user_name(user_name)
     if not user_info == None:
         print(f"[Error]: {user_name}はすでに登録されているため登録できません")

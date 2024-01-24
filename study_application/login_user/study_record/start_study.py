@@ -23,6 +23,9 @@ def main(user_id):
                 print(f"{row['id']:<3}:{row['category_name']}")
                 category_list.append(row['id'])
         category_id = input_util.input_int("勉強するカテゴリーのカテゴリーIDを入力してください")
+        if category_id == 'cancel':
+            print("キャンセルしました")
+            return
         if category_id in category_list:
             access_studying_users.insert_studying_user(user_id, category_id, now)
             print("勉強の開始記録が完了しました。勉強が終わった後忘れずに終了の記録をつけてください")
