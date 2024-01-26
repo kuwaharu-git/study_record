@@ -34,9 +34,6 @@ def main(user_id):
         print("24時間を超える記録は作成できません。勉強中の記録も削除します")
         access_studying_users.delete_studying_user(user_id)
         return
-    # ==============================================================================
-    # 時間制限を入れる必要あり
-    # ==============================================================================
     print(f"カテゴリリー名: {category_name}")
     print(f"勉強年月日: {study_date}")
     print(f"勉強時間: {HoursGet}時間{MinutesGet}分")

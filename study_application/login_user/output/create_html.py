@@ -23,6 +23,7 @@ def main(user_id):
     if result_2 == 'not_data':
         print('記録がありませんでした')
         return
+    # HTMLの作成
     with open(f"{os.path.dirname(os.path.abspath(__file__))}\{user_id}_stacked_bar_graph.html", mode='w', encoding= 'utf-8', newline='\n') as f:
         f.write('<html>\n')
         f.write('<head>\n')
