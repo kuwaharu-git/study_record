@@ -5,6 +5,7 @@ from util import input_util
 from user_manegement import create_user, delete_user
 from util.db_util import check_error
 
+
 @check_error
 def select_menu():
     while True:
@@ -18,8 +19,11 @@ def select_menu():
         elif num == 2:
             delete_user.main()
             break
+        elif num == 'cancel':
+            break
         else:
             print("1~2の数字を入力してください")
+
 
 if __name__ == '__main__':
     select_menu()

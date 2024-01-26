@@ -1,6 +1,7 @@
 from access_databasaes import access_studying_users, access_users, access_categories
 from util.db_util import check_error
 
+
 @check_error
 def main():
     rows = access_studying_users.get_all_info()

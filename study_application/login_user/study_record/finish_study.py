@@ -5,15 +5,17 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(
 from util import input_util
 from access_databasaes import access_study_records, access_users, access_categories, access_studying_users
 from util.db_util import check_error
+
+
 @check_error
 def main(user_id):
     if access_users.check_user_by_id == None:
         print(f"[Error]: {user_id}は登録されていません。一度ログアウトしてログインしなおしてください") 
         return
     study_info = access_studying_users.check_studying_user(user_id)
-    if study_info == None:
+    if study_info is None:
         print(f"[Error]: 現在ID{user_id}は勉強中ではありません")
-        return None
+        return 
     category_id = study_info[0]['category_id']
     category_name = access_categories.get_category(category_id)
     if category_name:
@@ -28,6 +30,10 @@ def main(user_id):
     MinutesGet, SecondsGet = divmod(difference, 60)   # 分, 秒
     HoursGet, MinutesGet = divmod(MinutesGet, 60)   # 時間, 分
     study_time = f"{HoursGet}:{MinutesGet}:00"   # 秒は切り捨て
+    if HoursGet >= 24:
+        print("24時間を超える記録は作成できません。勉強中の記録も削除します")
+        access_studying_users.delete_studying_user(user_id)
+        return
     # ==============================================================================
     # 時間制限を入れる必要あり
     # ==============================================================================
@@ -45,6 +51,7 @@ def main(user_id):
         else:
             access_studying_users.delete_studying_user(user_id)
             print("勉強中の記録を削除しました")
+
 
 if __name__ == '__main__':
     user_id = input_util.input_int('user_idの入力')

@@ -1,11 +1,10 @@
-import datetime
 from datetime import timedelta, datetime
 from random import randint
-user_id = 4
+user_id = 2
 category_names = ["Python", "web", "MySQL", "English", "Java", "IoT"]
 for _ in range(40):
     category_name = category_names[randint(0, len(category_names) - 1)]
-    study_date = datetime(2023, 2, 1) + timedelta(days=randint(4, 30))
+    study_date = datetime(2023, 1, 1) + timedelta(days=randint(1, 30))
     study_time = timedelta(hours=randint(0, 2), minutes=randint(0, 59))
 
     # SQL文を出力

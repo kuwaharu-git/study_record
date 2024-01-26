@@ -6,17 +6,23 @@ from util import input_util
 from login_user.category_manegement import category_manegement_menu
 from login_user.output import create_html
 from login_user.study_record import start_study, finish_study
+from login_user.record_manegement import record_select_menu
 from login_user import update_affiliaton
 from util.db_util import check_error
+
+
 @check_error
 def select_menu():
     user_name = input_util.input_any("ユーザー名を入力してください:")
+    if user_name == 'cancel':
+        print("キャンセルしました")
+        return
     user_info = access_users.check_user_by_user_name(user_name)
-    if not user_info == None:
+    if user_info is not None:
         user_id = user_info[0]["id"]
     else:
         print(f"{user_name}は登録されていません")
-        return 
+        return
     while True:
         print("*** ユーザーメニュー")
         if access_studying_users.check_studying_user(user_id):
@@ -27,8 +33,9 @@ def select_menu():
             menu_type = 2
         print("2: カテゴリ管理")
         print("3: 記録の出力")
-        print("4: 所属の変更")
-        print("5: ログアウト")
+        print("4: 記録の管理")
+        print("5: 所属の変更")
+        print("6: ログアウト")
         num = input_util.input_int("メニューを選択してください:")
         if num == 1 and menu_type == 1:
             finish_study.main(user_id)
@@ -39,12 +46,15 @@ def select_menu():
         elif num == 3:
             create_html.main(user_id)
         elif num == 4:
-            update_affiliaton.main(user_id)
+            record_select_menu.main(user_id)
         elif num == 5:
+            update_affiliaton.main(user_id)
+        elif num == 6 or 'cancel':
             print("ログアウトしました")
             break
         else:
             print("1~5の数字を入力してください")
+
 
 if __name__ == '__main__':
     select_menu()

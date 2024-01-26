@@ -3,8 +3,10 @@ import show_studying_users
 from login_user import login
 from user_manegement import user_management_menu
 
+
 def main():
     print("=== 勉強記録アプリ ===")
+    print("※入力の際に'cancel'と入力すると入力をキャンセルできます")
     print()
     while True:
         print("*** TOPメニュー ***")
@@ -20,11 +22,12 @@ def main():
             user_management_menu.select_menu()
         elif num == 3:
             show_studying_users.main()
-        elif num == 4:
+        elif num == 4 or num == "cancel":
             break
         else:
             print("1~4で入力してください")
             continue
+
 
 if __name__ == '__main__':
     main()

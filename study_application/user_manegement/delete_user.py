@@ -3,14 +3,17 @@ import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from access_databasaes import access_categories, access_study_records, access_studying_users, access_users
 from util import input_util
+from util.db_util import check_error
 
+
+@check_error
 def main():
     name = input_util.input_any("削除するユーザー名を入力してください:")
     if name == 'cancel':
         print("キャンセルしました")
         return
     user_info = access_users.check_user_by_user_name(name)
-    if user_info == None:
+    if user_info is None:
         print(f"[Error]: {name}は登録されていません")
         return
     user_id = user_info[0]['id']
@@ -25,6 +28,7 @@ def main():
         print("ユーザーの削除が完了しました")
     else:
         print("キャンセルしました")
+
 
 if __name__ == '__main__':
     main()
