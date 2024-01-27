@@ -24,7 +24,7 @@ def select_menu():
         print(f"{user_name}は登録されていません")
         return
     while True:
-        print("*** ユーザーメニュー")
+        print("*** ユーザーメニュー ***")
         if access_studying_users.check_studying_user(user_id):
             print("1: 勉強の終了(現在勉強中です)")
             menu_type = 1
