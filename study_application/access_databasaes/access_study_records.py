@@ -48,7 +48,7 @@ def delete_records_user(cnx, cursor, user_id):
 # 勉強記録の取得(年月で絞り込み)
 @database_connect
 def get_records(cnx, cursor, user_id, first_date, last_date):
-    sql = 'select * from study_records where user_id = %s and study_date between %s and %s order by study_date'
+    sql = 'select * from study_records where user_id = %s and study_date between %s and %s order by study_date, id'
     data = [user_id, first_date, last_date]
     cursor.execute(sql, data)
     records_rows = cursor.fetchall()
