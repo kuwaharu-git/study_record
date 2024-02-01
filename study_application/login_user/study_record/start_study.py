@@ -15,9 +15,8 @@ def main(user_id):
     if access_studying_users.check_studying_user(user_id):
         print("[Error]: すでに勉強中なため開始できません。")
         return
-    now = datetime.datetime.now()
     print("1  :その他")
-    category_list = [1]
+    category_list = [1]   # カテゴリーIDを格納するリストの作成
     rows = access_categories.get_categories(user_id)
     while True:
         if rows:
@@ -29,6 +28,7 @@ def main(user_id):
             print("キャンセルしました")
             return
         if category_id in category_list:
+            now = datetime.datetime.now()
             access_studying_users.insert_studying_user(user_id, category_id, now)
             print("勉強の開始記録が完了しました。勉強が終わった後忘れずに終了の記録をつけてください")
             break

@@ -54,5 +54,6 @@ ALTER TABLE studying_users ADD constraint studying_users_FK1
 ALTER TABLE studying_users ADD constraint studying_users_FK2
     Foreign Key (category_id) REFERENCES categories(id);
 
+-- 初期データ(全ユーザ共通のその他用)
 INSERT INTO users (id, user_name) VALUES (1, 'その他用');
 INSERT INTO categories (id, user_id, category_name) VALUES (1, 1, 'その他');

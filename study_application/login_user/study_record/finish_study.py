@@ -30,6 +30,7 @@ def main(user_id):
     MinutesGet, SecondsGet = divmod(difference, 60)   # 分, 秒
     HoursGet, MinutesGet = divmod(MinutesGet, 60)   # 時間, 分
     study_time = f"{HoursGet}:{MinutesGet}:00"   # 秒は切り捨て
+    # 24時間以上はdayに入ってしまうため制限
     if HoursGet >= 24:
         print("24時間を超える記録は作成できません。勉強中の記録も削除します")
         access_studying_users.delete_studying_user(user_id)

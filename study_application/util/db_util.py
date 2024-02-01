@@ -11,7 +11,7 @@ class Database_operation_Error(Exception):
 
 
 # 関数実行前にデータベースに接続、実行後にcloseするでデコレーター
-# エラーが起きた場合はFalseを返す
+# エラーが起きた場合は例外を発生させる
 class database_connect:
     def __init__(self, func):
         self.func = func
@@ -43,6 +43,7 @@ class database_connect:
                 cnx.close()
     
 
+# 例外を検知するデコレーター
 class check_error:
     def __init__(self, func):
         self.func = func

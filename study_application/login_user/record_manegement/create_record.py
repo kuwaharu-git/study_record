@@ -36,6 +36,7 @@ def main(user_id):
         if study_time_hour == 'cancel':
             print("キャンセルしました")
             return
+        # 24以上の数字を入れるとdayに入ってしまうため制限
         if study_time_hour >= 24:
             print("24未満の数字を入力してください")
         elif study_time_hour < 24:

@@ -16,10 +16,12 @@ def main(user_id):
     if year_month == 'cancel':
         print("キャンセルしました")
         return
+    # 積み上げ棒グラフの作成
     result_1 = create_stack_border.main(user_id, year_month)
     if result_1 == 'not_data':
         print('記録がありませんでした')
         return
+    # 円グラフの作成
     result_2 = create_pi_graph.main(user_id, year_month)
     if result_2 == 'not_data':
         print('記録がありませんでした')
@@ -38,6 +40,7 @@ def main(user_id):
         f.write('</body>\n')
         f.write(f'<img src="{os.path.dirname(__file__)}/{user_id}_stacked_bar_graph.png">\n')
         f.write(f'<img src="{os.path.dirname(__file__)}/{user_id}_pie_chart.png">\n')
+        # tableの作成
         f.write('<table border=1>\n')
         f.write('<tr>\n')
         f.write('<th>ID</th><th>カテゴリー</th><th>勉強日付</th><th>勉強時間</th>\n')

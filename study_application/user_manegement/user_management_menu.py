@@ -12,6 +12,7 @@ def select_menu():
         print("*** ユーザー管理 *** ")
         print("1: ユーザー登録")
         print("2: ユーザー削除")
+        print("3: 終了")
         num = input_util.input_int("メニューを選択してください:")
         if num == 1:
             create_user.main()
@@ -19,10 +20,10 @@ def select_menu():
         elif num == 2:
             delete_user.main()
             break
-        elif num == 'cancel':
+        elif num == 'cancel' or 3:
             break
         else:
-            print("1~2の数字を入力してください")
+            print("1~3の数字を入力してください")
 
 
 if __name__ == '__main__':

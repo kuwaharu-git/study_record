@@ -67,7 +67,7 @@ def get_category_name_list(cnx, cursor, user_id, first_date, last_date):
     rows = cursor.fetchall()
     return rows
 
-
+# idから記録を取得
 @database_connect
 def get_record_by_id(cnx, cursor, record_id):
     sql = 'select * from study_records where id = %s'

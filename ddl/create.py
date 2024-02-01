@@ -1,5 +1,6 @@
 from datetime import timedelta, datetime
 from random import randint
+# ランダムに勉強記録を作成する
 user_id = 2
 category_names = ["Python", "web", "MySQL", "English", "Java", "IoT"]
 for _ in range(40):
