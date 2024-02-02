@@ -29,7 +29,7 @@ def main(user_id):
     last_date = get_last_date.last_date(year_month.year, year_month.month)
     rows = access_study_records.get_records(user_id, year_month.date(), year_month.date().replace(day=last_date))
     # HTMLの作成
-    with open(f"{os.path.dirname(os.path.abspath(__file__))}\{user_id}_stacked_bar_graph.html", mode='w', encoding= 'utf-8', newline='\n') as f:
+    with open(f"{os.path.dirname(os.path.abspath(__file__))}\{user_id}_output.html", mode='w', encoding= 'utf-8', newline='\n') as f:
         f.write('<html>\n')
         f.write('<head>\n')
         f.write('<title>勉強記録</title>\n')
@@ -52,7 +52,7 @@ def main(user_id):
         f.write('</table>\n')
         f.write('</body>\n')
         f.write('</html>\n')
-    webbrowser.open(f"{os.path.dirname(os.path.abspath(__file__))}\{user_id}_stacked_bar_graph.html", 2, autoraise=True)
+    webbrowser.open(f"{os.path.dirname(os.path.abspath(__file__))}\{user_id}_output.html", 2, autoraise=True)
 
 
 if __name__ == '__main__':
